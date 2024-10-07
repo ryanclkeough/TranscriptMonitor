@@ -1,3 +1,8 @@
+Transcripts/*
+!Transcripts/README.md
+
+# --------------------BELOW THIS LINE IS PRE-GENERATED GITIGNORE ITEMS--------------------
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
