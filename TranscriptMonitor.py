@@ -34,7 +34,7 @@ def GetTranscriptFolderContents():
                     timestamp = "-1"
                     timestampText = ""
                     for line in file:
-                        line = line.strip()
+                        line = line.strip().lower()
                         if line == "":
                             continue
                         elif CheckIfLineIsTimestamp(line):
