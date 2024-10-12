@@ -29,13 +29,19 @@ def GetTranscriptFolderContents():
                 textFileName = os.path.basename(item)
                 textFilepath = os.path.join(transcriptsDirectory, item)
                 with open(textFilepath) as file:
+                    # timestamp starts at -1 incase the file does not start with a timestamp
+                    timestamp = "-1"
                     timestampText = ""
                     for line in file:
                         line = line.strip()
-                        if CheckIfLineIsTimestamp(line):
-                            textFileContents[line] = timestampText
+                        if line == "":
+                            continue
+                        elif CheckIfLineIsTimestamp(line):
+                            textFileContents[timestamp] = timestampText
+                            timestampText = ""
+                            timestamp = line
                         else:
-                            timestampText = line
+                            timestampText += line + " "
 
                 transcriptContents[textFileName] = textFileContents
 
