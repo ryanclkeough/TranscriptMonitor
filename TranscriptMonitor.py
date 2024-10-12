@@ -74,7 +74,7 @@ def ParseTranscripts(transcriptContents, blacklistedTerms):
                     foundBlacklistedTerms = AddBlacklistedTermToList(blacklistedTerm, foundBlacklistedTerms)
                     
             if len(foundBlacklistedTerms) > 0:
-                errorMessages.append(f"The blacklisted term(s) {foundBlacklistedTerms} exists in the file \"{file}\" at time stamp {timeStamp}")
+                errorMessages.append(f"Transcript \"{file}\" at {timeStamp}: {', '.join(foundBlacklistedTerms)}")
 
     return errorMessages
 
@@ -97,8 +97,17 @@ def PrintResults(errorMessages):
     if len(errorMessages) == 0:
         print("There were no blacklisted terms found within any of your transcripts")
     else:
+        print(f"------ Blacklisted Terms | {len(errorMessages)} Error Messages ------")
         for message in errorMessages:
             print(message)
+        print(f"------ Blacklisted Terms | {len(errorMessages)} Error Messages ------")
+        PrintDisclaimer()
+
+def PrintDisclaimer():
+    print()
+    print("Disclaimer:")
+    print("Just because an error is hit doesn't mean your transcript has blacklisted terms")
+    print("Please cross reference the error messages here with your transcript to ensure it isn't a false positive")
 
 if __name__ == '__main__':
     main()
